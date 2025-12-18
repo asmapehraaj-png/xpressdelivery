@@ -1,0 +1,98 @@
+// Next.js App Router – XpressDelivery Multilingual Website
+// File structure example:
+// app/page.tsx
+// app/layout.tsx
+// app/components/
+
+'use client'
+
+import { useState } from 'react'
+
+const content = {
+  en: {
+    title: 'XpressDelivery',
+    tagline: 'Logistics & Last-Mile Delivery Solutions Across Saudi Arabia',
+    about: 'XpressDelivery is a Saudi-based logistics and delivery company operating since 2018, providing rider supply, fleet operations, and platform onboarding services.',
+    services: ['Last-Mile Delivery', 'Rider Supply & Management', 'Fleet Operations', 'Application Registration'],
+    cities: 'Riyadh, Jeddah, Dammam, Madinah, Makkah, Tabuk, Yanbu, Taif',
+    contact: 'Contact Us',
+  },
+  ar: {
+    title: 'إكسبرس ديليفري',
+    tagline: 'حلول لوجستية وخدمات التوصيل داخل المملكة العربية السعودية',
+    about: 'إكسبرس ديليفري شركة سعودية متخصصة في خدمات التوصيل وإدارة الأساطيل وتوفير السائقين منذ عام 2018.',
+    services: ['التوصيل للميل الأخير', 'إدارة السائقين', 'تشغيل الأساطيل', 'تسجيل التطبيقات'],
+    cities: 'الرياض، جدة، الدمام، المدينة، مكة، تبوك، ينبع، الطائف',
+    contact: 'تواصل معنا',
+  },
+  ur: {
+    title: 'ایکسپریس ڈیلیوری',
+    tagline: 'سعودی عرب میں لاجسٹکس اور ڈیلیوری سروسز',
+    about: 'ایکسپریس ڈیلیوری 2018 سے سعودی عرب میں ڈیلیوری، رائیڈر مینجمنٹ اور لاجسٹکس سروسز فراہم کر رہی ہے۔',
+    services: ['لاسٹ مائل ڈیلیوری', 'رائیڈر مینجمنٹ', 'فلیٹ آپریشنز', 'ایپلیکیشن رجسٹریشن'],
+    cities: 'ریاض، جدہ، دمام، مدینہ، مکہ، تبوک، ينبع، طائف',
+    contact: 'ہم سے رابطہ کریں',
+  }
+}
+
+export default function Home() {
+  const [lang, setLang] = useState<'en' | 'ar' | 'ur'>('en')
+  const t = content[lang]
+
+  return (
+    <main className="min-h-screen font-sans">
+      <header className="bg-slate-900 text-white p-10">
+        <div className="flex justify-between items-center">
+          <h1 className="text-4xl font-bold">{t.title}</h1>
+          <select onChange={(e) => setLang(e.target.value as any)} className="text-black p-2 rounded">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+            <option value="ur">اردو</option>
+          </select>
+        </div>
+        <p className="mt-4 text-lg">{t.tagline}</p>
+      </header>
+
+      <section className="p-10 max-w-5xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-4">About</h2>
+        <p>{t.about}</p>
+      </section>
+
+      <section className="p-10 bg-gray-100">
+        <h2 className="text-3xl font-semibold mb-6">Services</h2>
+        <ul className="grid md:grid-cols-2 gap-4">
+          {t.services.map((s, i) => (
+            <li key={i} className="bg-white p-5 rounded-xl shadow">{s}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="p-10 max-w-5xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-4">Service Cities</h2>
+        <p>{t.cities}</p>
+      </section>
+
+      <section className="p-10 bg-slate-900 text-white">
+        <h2 className="text-3xl font-semibold mb-4">{t.contact}</h2>
+        <p>Email: pehraaj@gmail.com</p>
+        <p>Phone / WhatsApp: +966595800126</p>
+        <p>Main Office: Jeddah, Saudi Arabia</p>
+        <a href="https://wa.me/966595800126" className="inline-block mt-4 bg-green-500 px-6 py-3 rounded-full font-bold">WhatsApp Us</a>
+      </section>
+
+      {/* Google Form Backend Placeholder */}
+      <section className="p-10 max-w-5xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-4">Application Registration</h2>
+        <iframe
+          src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
+          width="100%"
+          height="700"
+        ></iframe>
+      </section>
+
+      <footer className="p-6 text-center bg-black text-gray-400">
+        © 2025 XpressDelivery.com | All Rights Reserved
+      </footer>
+    </main>
+  )
+}
